@@ -1,0 +1,31 @@
+name: Combine HTML Files
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Combine HTML files
+      run: |
+        cat Gamma-team/index.html >> combined.html
+        cat Gamma-team/course.html >> combined.html
+        cat Gamma-team/format.html >> combined.html
+        cat Gamma-team/layihe.html >> combined.html
+        cat Gamma-team/footer.html >> combined.html
+        # Add more lines for additional files
+
+    - name: Commit changes
+      run: |
+        git config user.name "KananTamrazli"
+        git config user.email "kanan.tamrazli@gmail.com"
+        git add combined.html
+        git commit -m "Combine HTML files"
+        git push
